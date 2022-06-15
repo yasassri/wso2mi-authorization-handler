@@ -1,13 +1,15 @@
 # wso2mi-authorization-handler
 
-This WSO2 synapse handler allows to do Authentication and role based authorization
+This WSO2 synapse handler allows to do authentication and role based authorization
 
 For this to work, you need to plugin a LDAP or a JDBC userstore to MI. 
 
-First build this project and copy the wso2-authorization-handler-1.0.jar to <MI_HOME>/lib directory.
+**How to use**
 
-Then in the API definition you can add the handler as shown below.
+1. First build this project and copy the wso2-authorization-handler-1.0.jar to <MI_HOME>/lib directory.
+2. Then in the API definition you can add the handler as shown below.
 
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <api xmlns="http://ws.apache.org/ns/synapse" name="test2" context="/test2" binds-to="default">
    <resource methods="POST" binds-to="default">
@@ -42,19 +44,21 @@ Then in the API definition you can add the handler as shown below.
     </handler>
 </handlers>
 </api>
+```
+3. Then Add a user credentials as a Basic Auth header and send a request. Refer following. (Make sure user:password is base64 encoded)
 
-Then Add a user credentials as a Basic Auth header and send a request. Refer following.
+`curl -vk -X POST http://localhost:8290/test2 -H "Authorization: Basic YWRtaW46YWRtaW4="`
 
-curl -vk -X POST http://localhost:8290/test2 -H "Authorization: Basic YWRtaW46YWRtaW4="
+Note: If the Authentication fails you will get a HTTP 401 or if the Authorization fails you will receive a HTTP 403.
 
-If the Authentication fails you will get a HTTP 401 or if the Authorization fails you will receive a HTTP 403.
+**Handler params.**
 
-Handler params.
-
+```xml
 <handler class="com.ycr.auth.handlers.AuthorizationHandler">
       <property name="roles" value="admin,test" />
       <property name="authorize" value="true" />
 </handler>
+```
 
-roles: The user can define list of allowed roles for the API.
-authorize: If Aauthorization(Role validation) is not required this can be set to false. If set to false only authentication will take place. Authorization stage will be skipped. 
+- **roles**: The user can define list of allowed roles for the API.
+- **authorize**: If Aauthorization(Role validation) is not required this can be set to false. If set to false only authentication will take place. Authorization stage will be skipped. 
