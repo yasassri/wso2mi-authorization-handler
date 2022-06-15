@@ -4,7 +4,7 @@ This WSO2 synapse handler allows to do authentication and role based authorizati
 
 **How to use**
 
-1. First build this project and copy the wso2-authorization-handler-1.0.jar to <MI_HOME>/lib directory.
+1. First build this project or download the released Jar from https://github.com/yasassri/wso2mi-authorization-handler/releases/tag/v1.0.0 and copy the wso2-authorization-handler-1.0.jar to <MI_HOME>/lib directory.
 2. Then in the API definition you can add the handler as shown below.
 
 ```xml
