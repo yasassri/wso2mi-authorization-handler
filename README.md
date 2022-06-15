@@ -2,8 +2,6 @@
 
 This WSO2 synapse handler allows to do authentication and role based authorization
 
-For this to work, you need to plugin a LDAP or a JDBC userstore to MI. 
-
 **How to use**
 
 1. First build this project and copy the wso2-authorization-handler-1.0.jar to <MI_HOME>/lib directory.
@@ -62,3 +60,5 @@ Note: If the Authentication fails you will get a HTTP 401 or if the Authorizatio
 
 - **roles**: The user can define list of allowed roles for the API.
 - **authorize**: If Aauthorization(Role validation) is not required this can be set to false. If set to false only authentication will take place. Authorization stage will be skipped. 
+
+Note: Inorder to do role management you need to plugin a LDAP or a JDBC userstore to MI.
